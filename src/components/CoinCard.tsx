@@ -1,5 +1,6 @@
 import './CoinCard.sass';
 import { STATUS } from "enum";
+import { parseISOString } from 'utils/date';
 
 export type CoinCardProps = {
   id: number;
@@ -8,9 +9,21 @@ export type CoinCardProps = {
   expiryDate: string;
 }
 
+const dateTimeFormatOptions = {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+  hour12: false,
+  hour: '2-digit',
+  minute: '2-digit'
+} as Intl.DateTimeFormatOptions;
+
 const CoinCard = ({ id, name, status, expiryDate }: CoinCardProps) => {
   const logo = <svg></svg>;
   const price = 1000;
+  const formattedPrice = new Intl.NumberFormat('en-us', { style: 'currency', currency: 'USD' }).format(price);
+  const formattedDate = new Intl.DateTimeFormat('en-us', dateTimeFormatOptions)
+    .format(parseISOString(expiryDate));
 
   return (
     <div className="card-root">
@@ -23,8 +36,8 @@ const CoinCard = ({ id, name, status, expiryDate }: CoinCardProps) => {
           {logo}
         </div>
         <div className="card-info">
-          <span>{price}</span>
-          <span>End: {expiryDate}</span>
+          <span>{formattedPrice}</span>
+          <span>End: {formattedDate}</span>
         </div>
       </div>
     </div>
