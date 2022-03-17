@@ -42,6 +42,10 @@ const getRandomTimestamp = () => {
   ).toISOString();
 };
 
+const getRandomStatus = () => {
+  return Math.floor(Math.random() * (3 - 1 + 1) + 1)
+}
+
 module.exports = () => {
   const coins = [];
 
@@ -50,6 +54,7 @@ module.exports = () => {
       ...sampleCoin,
       id: getRandomId(),
       createdTimestamp: getRandomTimestamp(),
+      status: getRandomStatus()
     })
   }
 

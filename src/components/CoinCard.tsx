@@ -15,8 +15,8 @@ const CoinCard = ({ id, name, status, expiryDate }: CoinCardProps) => {
   return (
     <div className="card-root">
       <div className="card-header">
-        <span>{name}</span>
-        <span>{status}</span>
+        <span className="coin-name">{name}</span>
+        <span className="coin-status">{status}</span>
       </div>
       <div className="card-main">
         <div className="card-logo-container">
