@@ -1,0 +1,28 @@
+@use 'styles/_variables' as *
+@use 'styles/_baseline'
+
+.App
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100%
+
+  #coin-grid-header
+    color: $primary
+    display: flex
+    flex-direction: row
+    align-items: center
+    > :first-child
+      margin-right: 1rem
+
+  #coin-grid
+    $grid-templates: ($md: 2, $lg: 3, $xl: 4)
+    display: grid
+    grid:
+      template-columns: 1
+      column-gap: 60px
+      row-gap: 52px
+
+    @each $breakpoint, $columns in $grid-templates
+      @media (min-width: $breakpoint)
+        grid-template-columns: repeat($columns, 290px)

@@ -1,10 +1,11 @@
-export interface ICoin {
+export interface ICoinModel {
   id: number;
   blockNumber: number;
   transactionIndex: number;
   sources: number[];
   symbol: string;
   slug: string;
+  leaseEnd: number;
   subscriptionId: number;
   networkId: number;
   aggregationStrategy: number;
