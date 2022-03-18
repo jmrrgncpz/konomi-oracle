@@ -43,7 +43,7 @@ const getRandomTimestamp = () => {
 };
 
 const getRandomStatus = () => {
-  return Math.floor(Math.random() * (3 - 1 + 1) + 1)
+  return Math.floor(Math.random() * 4)
 }
 
 module.exports = () => {

@@ -16,9 +16,16 @@ export const coinsApi = baseApi.injectEndpoints({
         }))
 
         return coins;
-      }
+      },
     }),
+    fetchCoinLogo: builder.query<string | undefined, number>({
+      queryFn: (id) => {
+        return {
+          data: id % 2 === 0 ? 'https://via.placeholder.com/70' : undefined
+        }
+      }
+    })
   })
 });
 
-export const { useFetchCoinsQuery } = coinsApi;
+export const { useFetchCoinsQuery, useFetchCoinLogoQuery } = coinsApi;

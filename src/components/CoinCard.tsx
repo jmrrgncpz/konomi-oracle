@@ -1,6 +1,8 @@
 import './CoinCard.sass';
 import { STATUS } from "enum";
 import { parseISOString } from 'utils/date';
+import defaultCoinLogo from 'assets/default-logo.svg';
+import { useFetchCoinLogoQuery } from 'service/coin';
 
 export type CoinCardProps = {
   id: number;
@@ -19,7 +21,7 @@ const dateTimeFormatOptions = {
 } as Intl.DateTimeFormatOptions;
 
 const CoinCard = ({ id, name, status, expiryDate }: CoinCardProps) => {
-  const logo = <svg></svg>;
+  const { data: coinLogo, isLoading: isCoinLogoLoading } = useFetchCoinLogoQuery(id);
   const price = 1000;
   const formattedPrice = new Intl.NumberFormat('en-us', { style: 'currency', currency: 'USD' }).format(price);
   const formattedDate = new Intl.DateTimeFormat('en-us', dateTimeFormatOptions)
@@ -32,9 +34,11 @@ const CoinCard = ({ id, name, status, expiryDate }: CoinCardProps) => {
         <span className="coin-status">{status}</span>
       </div>
       <div className="card-main">
-        <div className="card-logo-container">
-          {logo}
-        </div>
+        <figure className="card-logo-container">
+          {
+            isCoinLogoLoading ? <div></div> : <img src={coinLogo || defaultCoinLogo} />
+          }
+        </figure>
         <div className="card-info">
           <span>{formattedPrice}</span>
           <span>End: {formattedDate}</span>
