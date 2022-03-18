@@ -7,18 +7,23 @@ import CoinStatus from './CoinStatus';
 import { classNames, withSkeleton } from 'utils/classname';
 import { ReactNode } from 'react';
 
-export type CoinCardProps = {
+export interface ICoinCardData {
   id: number;
   name: string;
   status: keyof typeof STATUS;
   expiryDate: string;
 }
 
+export type CoinCardProps = ICoinCardData & {
+  onClick: (id: number) => void;
+  isActive: boolean;
+}
+
 const renderOnLoad = (el: ReactNode, isLoading: boolean) => {
   return isLoading ? '' : el;
 }
 
-const CoinCard = ({ id, name, status, expiryDate }: CoinCardProps) => {
+const CoinCard = ({ id, name, status, expiryDate, onClick, isActive }: CoinCardProps) => {
   const { data: coinLogo, isLoading: isCoinLogoLoading } = useFetchCoinLogoQuery(id);
   const { data: coinPrice, isLoading: isCoinPriceLoading } = useFetchCoinPriceQuery(id);
 
@@ -28,7 +33,7 @@ const CoinCard = ({ id, name, status, expiryDate }: CoinCardProps) => {
   const isLoading = isCoinLogoLoading || isCoinPriceLoading;
 
   return (
-    <div className="card-root">
+    <div className={classNames("card-root", isActive ? 'active' : '')} onClick={() => onClick(id)}>
       <div className="card-header">
         <div className='coin-name-container'>
           <span className={withSkeleton(['coin-name'], isLoading)}>{renderOnLoad(name, isLoading)}</span>

@@ -9,7 +9,12 @@ $b-radius: .5rem
 $loader-color: white
 
 .card-root
+  cursor: pointer
   color: white
+  border-radius: $b-radius
+  &:hover, &.active
+    .card-main, .coin-name-container
+      border-color: $primary !important
   .card-header
     $padding: .5rem
     width: 100%
@@ -19,6 +24,13 @@ $loader-color: white
     border-top-left-radius: $b-radius
     font-weight: 700
     .coin-name-container
+      border:
+        width: 1px
+        bottom-width: 0
+        style: solid
+        color: transparent
+        top-left-radius: $b-radius
+        top-right-radius: $b-radius
       padding: $padding
       width: 100px
       text-transform: uppercase
@@ -48,6 +60,9 @@ $loader-color: white
     flex-direction: row
     height: 100px
     border:
+      width: 1px
+      style: solid
+      color: transparent
       top-right-radius: $b-radius
       bottom-right-radius: $b-radius
       bottom-left-radius: $b-radius

@@ -3,9 +3,19 @@ import './App.sass';
 import { useFetchCoinsQuery } from "./service/coin";
 import OracleIcon from "./components/icons/OracleIcon";
 import CoinCard from 'components/CoinCard';
+import { useCallback, useState } from 'react';
 
 const App = () => {
-  const { data, isLoading, isFetching } = useFetchCoinsQuery();
+  const [selectedCoinId, setSelectedCoinId] = useState<number | null>(null)
+  const { data: coins } = useFetchCoinsQuery();
+  const handleCoinCardClick = useCallback((id) => {
+    if (selectedCoinId === id) {
+      setSelectedCoinId(null);
+    } else {
+      setSelectedCoinId(id);
+    }
+  }, [setSelectedCoinId, selectedCoinId])
+
   return (
     <div className="App">
       <div className="container">
@@ -15,7 +25,14 @@ const App = () => {
         </div>
         <div id="coin-grid">
           {
-            data ? data.map((coinCardProps) => <CoinCard {...coinCardProps} />) : <div></div>
+            coins
+            && coins.map(coinCardProps =>
+              <CoinCard
+                {...coinCardProps}
+                onClick={handleCoinCardClick}
+                isActive={selectedCoinId === coinCardProps.id}
+              />
+            )
           }
         </div>
       </div>
