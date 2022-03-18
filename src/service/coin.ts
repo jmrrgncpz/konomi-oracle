@@ -20,12 +20,23 @@ export const coinsApi = baseApi.injectEndpoints({
     }),
     fetchCoinLogo: builder.query<string | undefined, number>({
       queryFn: (id) => {
-        return {
-          data: id % 2 === 0 ? 'https://via.placeholder.com/70' : undefined
-        }
+        return new Promise((resolve) => {
+          setTimeout(() => resolve({
+            data: id % 2 === 0 ? 'https://via.placeholder.com/70' : undefined
+          }), 2000);
+        })
+      }
+    }),
+    fetchCoinPrice: builder.query<number, number>({
+      queryFn: (id) => {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve({
+            data: id * (Math.floor(Math.random() * 10001))
+          }), 2000);
+        })
       }
     })
   })
 });
 
-export const { useFetchCoinsQuery, useFetchCoinLogoQuery } = coinsApi;
+export const { useFetchCoinsQuery, useFetchCoinLogoQuery, useFetchCoinPriceQuery } = coinsApi;
