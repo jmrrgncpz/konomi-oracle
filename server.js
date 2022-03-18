@@ -29,7 +29,7 @@ const sampleCoin = {
 };
 
 const getRandomId = () => {
-  return Math.floor(Math.random() * 9999);
+  return Math.floor(Math.random() * 9999) + 1;
 };
 
 const getRandomTimestamp = () => {
@@ -43,13 +43,13 @@ const getRandomTimestamp = () => {
 };
 
 const getRandomStatus = () => {
-  return Math.floor(Math.random() * 4)
+  return Math.floor(Math.random() * 3) + 1;
 }
 
 module.exports = () => {
   const coins = [];
 
-  for(let i = 0; i < 10; i++) {
+  for(let i = 0; i < 8; i++) {
     coins.push({
       ...sampleCoin,
       id: getRandomId(),
