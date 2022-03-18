@@ -12,6 +12,9 @@ $loader-color: white
   cursor: pointer
   color: white
   border-radius: $b-radius
+  &.active
+    .card-main, .coin-name-container
+      background: $block
   &:hover, &.active
     .card-main, .coin-name-container
       border-color: $primary !important
