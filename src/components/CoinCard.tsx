@@ -32,11 +32,13 @@ const CoinCard = ({ id, name, status, expiryDate }: CoinCardProps) => {
         <span className="coin-status">{status}</span>
       </div>
       <div className="card-main">
-        <figure className="card-logo-container">
-          {
-            isCoinLogoLoading ? <div></div> : <img src={coinLogo || defaultCoinLogo} />
-          }
-        </figure>
+        <div className='card-logo-container'>
+          <figure className="card-logo">
+            {
+              isCoinLogoLoading ? <div></div> : <img src={coinLogo || defaultCoinLogo} />
+            }
+          </figure>
+        </div>
         <div className="card-info">
           <span className='coin-price'>{formattedPrice}</span>
           <span className='coin-expiry-date'>End: {formattedDate}</span>

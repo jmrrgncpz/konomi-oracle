@@ -14,7 +14,7 @@ $b-radius: .5rem
     font-weight: 700
     .coin-name
       padding: $padding
-      width: 105px
+      width: 100px
       text-align: center
       text-transform: uppercase
     .coin-status
@@ -28,27 +28,32 @@ $b-radius: .5rem
     text-align: center
     font-weight: 500
     background: $card-bg
-    padding: 1rem 1.5rem
     display: flex
     flex-direction: row
+    height: 100px
     border:
       top-right-radius: $b-radius
       bottom-right-radius: $b-radius
       bottom-left-radius: $b-radius
 
   .card-logo-container
-    width: 70px
-    height: 70px
-    border-radius: 35px
-    overflow: hidden
-
+    width: 115px
+    display: flex
+    .card-logo
+      width: 70px
+      height: 70px
+      margin: auto
+      border-radius: 35px
+      overflow: hidden
+    
   .card-info
     display: flex
-    justify-content: space-around
+    justify-content: center
     flex: 1
       direction: column
     .coin-price
       font-size: 21px
+      margin-bottom: 13px
     .coin-expiry-date
       font-size: 13px
 
