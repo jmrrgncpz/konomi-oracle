@@ -23,7 +23,7 @@ export const coinsApi = baseApi.injectEndpoints({
         return new Promise((resolve) => {
           setTimeout(() => resolve({
             data: id % 2 === 0 ? 'https://via.placeholder.com/70' : undefined
-          }), 2000);
+          }), 2500);
         })
       }
     }),
@@ -32,7 +32,7 @@ export const coinsApi = baseApi.injectEndpoints({
         return new Promise((resolve) => {
           setTimeout(() => resolve({
             data: id * (Math.floor(Math.random() * 10001))
-          }), 2000);
+          }), 2500);
         })
       }
     })

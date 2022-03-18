@@ -1,6 +1,12 @@
 @use 'styles/_variables' as *
+
+@keyframes loadingBlur
+  to
+    background-position: 350% 0, 0 0
+
 $card-bg: linear-gradient(90deg, rgba(39,40,72,1) 0%, rgba(55,21,58,1) 100%, rgba(0,212,255,1) 100%)
 $b-radius: .5rem
+$loader-color: white
 
 .card-root
   color: white
@@ -12,17 +18,27 @@ $b-radius: .5rem
     background: $card-bg
     border-top-left-radius: $b-radius
     font-weight: 700
-    .coin-name
+    .coin-name-container
       padding: $padding
       width: 100px
-      text-align: center
       text-transform: uppercase
-    .coin-status
-      flex: 1
-      padding: $padding
-      text-transform: capitalize
-      text-align: right
+      display: flex
+    .coin-status-container
       background: $block
+      flex: 1
+    .coin-name
+      margin: auto
+      &.skeleton
+        width: 40px
+        height: 20px
+        border-radius: 4px
+        border: 1px solid rgba(white, .1)
+        animation: loadingBlur 1.5s infinite
+        background:
+          image: linear-gradient(90deg, rgba($loader-color, 0) 0, rgba($loader-color, .8) 50%, rgba($loader-color, 0) 100%)
+          size: 100px 20px
+          position: -150% 0
+          repeat: no-repeat
 
   .card-main
     text-align: center
@@ -40,21 +56,56 @@ $b-radius: .5rem
     width: 115px
     display: flex
     .card-logo
-      width: 70px
-      height: 70px
+      $width: 70px
+      $height: 70px
+      $circle-radius: 35px
+      width: $width
+      height: $height
       margin: auto
-      border-radius: 35px
+      border-radius: $circle-radius
       overflow: hidden
-    
+      &.skeleton
+        border-radius: $circle-radius
+        border: 1px solid rgba(white, .1)
+        animation: loadingBlur 1.5s infinite
+        background:
+          image: linear-gradient(90deg, rgba($loader-color, 0) 0, rgba($loader-color, .8) 50%, rgba($loader-color, 0) 100%)
+          size: calc($width * 2) $height
+          position: -150% 0
+          repeat: no-repeat
+
   .card-info
     display: flex
     justify-content: center
     flex: 1
-      direction: column
+    flex-direction: column
+    margin-right: 14px
     .coin-price
       font-size: 21px
       margin-bottom: 13px
+      &.skeleton
+        $width: 80%
+        $height: 20px
+        height: $height
+        border-radius: 4px
+        border: 1px solid rgba(white, .1)
+        animation: loadingBlur 1.5s infinite
+        background:
+          image: linear-gradient(90deg, rgba($loader-color, 0) 0, rgba($loader-color, .8) 50%, rgba($loader-color, 0) 100%)
+          size: calc($width * 2) $height
+          position: -150% 0
+          repeat: no-repeat
     .coin-expiry-date
       font-size: 13px
-
-        
+      &.skeleton
+        $width: 80%
+        $height: 20px
+        height: $height
+        border-radius: 4px
+        border: 1px solid rgba(white, .1)
+        animation: loadingBlur 1.5s infinite
+        background:
+          image: linear-gradient(90deg, rgba($loader-color, 0) 0, rgba($loader-color, .8) 50%, rgba($loader-color, 0) 100%)
+          size: calc($width * 2) $height
+          position: -150% 0
+          repeat: no-repeat
