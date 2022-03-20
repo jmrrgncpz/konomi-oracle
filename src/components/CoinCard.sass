@@ -4,7 +4,8 @@
   to
     background-position: 350% 0, 0 0
 
-$card-bg: linear-gradient(90deg, rgba(39,40,72,1) 0%, rgba(55,21,58,1) 100%, rgba(0,212,255,1) 100%)
+$card-bg: url('../assets/card-bg.svg')
+$active-card-bg: url('../assets/active-card-bg.svg')
 $b-radius: .5rem
 $loader-color: white
 
@@ -12,18 +13,20 @@ $loader-color: white
   cursor: pointer
   color: white
   border-radius: $b-radius
+  background:
+    image: $card-bg
+    size: contain
+    repeat: no-repeat
+  
+  &:hover
+    background-image: $active-card-bg
   &.active
-    .card-main, .coin-name-container
-      background: $block
-  &:hover, &.active
-    .card-main, .coin-name-container
-      border-color: $primary !important
+    background-image: $active-card-bg
   .card-header
     $padding: .5rem
     width: 100%
     display: flex
     align-items: stretch
-    background: $card-bg
     border-top-left-radius: $b-radius
     font-weight: 700
     .coin-name-container
@@ -39,7 +42,6 @@ $loader-color: white
       text-transform: uppercase
       display: flex
     .coin-status-container
-      background: $block
       flex: 1
     .coin-name
       margin: auto
@@ -58,17 +60,9 @@ $loader-color: white
   .card-main
     text-align: center
     font-weight: 500
-    background: $card-bg
     display: flex
     flex-direction: row
     height: 100px
-    border:
-      width: 1px
-      style: solid
-      color: transparent
-      top-right-radius: $b-radius
-      bottom-right-radius: $b-radius
-      bottom-left-radius: $b-radius
 
   .card-logo-container
     width: 115px
