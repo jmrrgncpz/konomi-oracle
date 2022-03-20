@@ -2,7 +2,7 @@
 https://konomi-oracle.herokuapp.com/
 
 ### Packages
-Install packages with `yarn`. I've included the `json-server` as dev dependency but if the server won't start, try to manually install it with `yarn global add json-server`.
+Install packages with `yarn`. I've included the `json-server` as dependency but if the server won't start, try to manually install it with `yarn global add json-server`.
 
 ### `yarn start`
 
